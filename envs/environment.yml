@@ -1,0 +1,19 @@
+name: edge_glm
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.9
+  - numpy
+  - pandas
+  - ipython
+  - jupyter
+  - scipy
+  - scikit-learn
+  - nibabel
+  - nilearn
+  - matplotlib
+  - seaborn
+  - pip
+  - pip:
+    - yellowbrick
+

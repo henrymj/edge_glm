@@ -1,0 +1,1 @@
+{"model": "trialType", "glm_noise_model": "ar1", "use_rois": false, "replicate": false, "VTC_FWHM": 9, "VTC_shift": 6, "clip_blocks": false, "high_pass": null, "low_pass": null, "t_r": 1, "signal_scaling": false, "atlas_loc": "shen_2mm_268_parcellation.nii.gz", "nROI": 268, "dataset": "2", "dataset2_censor_thresh": 0.1, "results_base": "results"}

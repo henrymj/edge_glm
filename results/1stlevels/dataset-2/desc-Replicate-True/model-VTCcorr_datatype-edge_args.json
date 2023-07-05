@@ -1,0 +1,1 @@
+{"use_rois": false, "VTC_FWHM": 9, "VTC_shift": 6, "clip_blocks": false, "replicate": true, "high_pass": null, "low_pass": null, "t_r": 1, "signal_scaling": false, "glm_noise_model": "ar1", "nROI": 268, "behav_data_loc": "gradCPT_behav_dataShare", "fmri_data_loc": "gradCPT_roimean_dataShare.mat", "dataset": "2", "dataset2_censor_thresh": 0.1, "results_base": "results"}
