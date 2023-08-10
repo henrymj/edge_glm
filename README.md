@@ -1,4 +1,4 @@
-# **Code to produce the analyses of Jones, Yoo, Chun & Rosenberg.**
+# **Code to produce the analyses of the paper "Edge-based general linear models capture high-frequency fluctuations in attention".**
 
 ## Housekeeping
 - `envs/` holds the following environmental requirement files:  
