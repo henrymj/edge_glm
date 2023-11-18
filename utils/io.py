@@ -30,6 +30,8 @@ def get_args(args=None):
     parser.add_argument("-dataset2_censor_thresh", default=0.1)
     parser.add_argument("-results_base", default="results")
 
+    parser.add_argument("-HRF", default="SPM")  # added in revisions
+
     # second level specific
     parser.add_argument('-n_perms', default=10000)  # number of permutations to run, ALSO USED FOR THIRDLEVELS
     parser.add_argument('-perm_p_thresh', default=.05)  # after permutation, what threshold to be above to include
@@ -48,6 +50,7 @@ def get_firstlevel_dir(args):
         ("trimBlockEnds-True" if args.trim_block_ends else ""),
         ("noiseModel-OLS" if args.glm_noise_model == "ols" else ""),
         ("Replicate-True" if args.replicate else ""),
+        (f"HRF-{args.HRF}" if args.HRF != "SPM" else ""),
     ]
     desc = "_".join([s for s in desc if s != ""])
     desc = desc if desc != "" else "standard"
@@ -103,13 +106,12 @@ def load_data(args):
     elif int(args.dataset) == 2:
         ntr_tossed = 3
 
-        fmri_files = sorted(glob("dataset-2/fmri_data/*.mat"))
-        timeseries_data = {idx: loadmat(f)["ts"][0].tolist() for idx, f in enumerate(fmri_files)}
-
-        sublist = ["sub%s" % i for i in pd.read_csv("dataset-2/sublist.csv").T.values[0]]
-
+        sublist = pd.read_csv('dataset-2/sublist.csv').T.values[0]
+    
+        timeseries_data = {}
         sub_file_map = {}
         for sidx, sub in enumerate(sublist):
-            sub_file_map[sidx] = sorted(glob(path.join("dataset-2/behav_data", "gradCPTdata_%s_*" % sub)))
+            sub_file_map[sidx] = sorted(glob(path.join('dataset-2/behav_data', 'gradCPTdata_sub%s_*' % sub)))
+            timeseries_data[sidx] = loadmat(glob(path.join('dataset-2/fmri_data', '*_%s_*' % sub))[0])['ts'][0].tolist()
 
     return timeseries_data, sub_file_map, sublist, ntr_tossed
