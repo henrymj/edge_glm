@@ -27,7 +27,7 @@ To produce the material for Figure 1, replicating the ROI activity analyses, run
 \[set the first line of cell 3 to `get_args(["-replicate" "-dataset", "2"])`] 
 5. `secondlevels_replicate-Dataset2.ipynb`
 
-## Figure 2
+## Figures 2 & 3
 To produce the material for Figure 2, examining edges results for traditional analyses, run the following:
 1. `firstlevels_glm.ipynb`
 2. `firstlevels_VTCcorrs.ipynb` 
@@ -35,14 +35,14 @@ To produce the material for Figure 2, examining edges results for traditional an
 6. `thirdlevels.ipynb`
 7. `visualize_results.ipynb`
 
-## Figure 3
+## Figure 4
 To produce the material for Figure 3, comparing edges correlated with the VTC and attention networks predicting individual differences, run:
 1. `thirdlevels.ipynb` (The critical section is "*Compare 2ndlevels with CPM edges*")  
 2. `visualize_results.ipynb` (the critical section is "*VTC corr \* CPM overlap, dataset 2 NBS*")  
 
 This assumes you've run the notebooks described above for generating Figure 2.
 
-## Figure 4
+## Figure 5
 To produce the material for Figure 4, the estimated hemodynamic response clusters, see the following (but note they can't be run without dataset 1):
 1. `FIR_ROIs.ipynb`
 2. `FIR_edges.ipynb`
