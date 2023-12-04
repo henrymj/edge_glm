@@ -10,7 +10,7 @@ from nilearn.glm.contrasts import (
     expression_to_contrast_vector,
 )
 from nilearn.glm.contrasts import compute_contrast as compute_glm_contrast
-from nilearn.glm._utils import _check_run_tables, _check_events_file_uses_tab_separators
+from nilearn._utils.glm import _check_run_tables, _check_events_file_uses_tab_separators
 from nilearn.glm.regression import RegressionResults, SimpleRegressionResults
 from nilearn.glm.second_level.second_level import (
     _check_first_level_contrast,

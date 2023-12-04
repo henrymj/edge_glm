@@ -151,7 +151,7 @@ def exclude_irrelevant_VTC_TRs(sub_run_desmat, curr_timeseries, args, break_onse
     return sub_run_desmat, curr_timeseries
 
 
-def check_dataset2_censored_trs(sub_run_desmat, curr_timeseries, args, return_bad_trs=False):
+def check_dataset2_censored_trs(sub_run_desmat, curr_timeseries, args, return_bad_trs=False, return_border_bad_trs=False):
     skip_session = False
     bad_trs = None
     if int(args.dataset) == 2:  # this function only applies to dataset 2, will be skipped for dataset 1
@@ -187,8 +187,12 @@ def check_dataset2_censored_trs(sub_run_desmat, curr_timeseries, args, return_ba
 
             # reset desmat index
             sub_run_desmat = sub_run_desmat.reset_index(drop=True)
-    if return_bad_trs:
+    if return_bad_trs and return_border_bad_trs:
+        return curr_timeseries, sub_run_desmat, skip_session, bad_trs, borders_bad_trs
+    elif return_bad_trs:
         return curr_timeseries, sub_run_desmat, skip_session, bad_trs
+    elif return_border_bad_trs:
+        return curr_timeseries, sub_run_desmat, skip_session, borders_bad_trs
     else:
         return curr_timeseries, sub_run_desmat, skip_session
 
@@ -201,6 +205,7 @@ def convert_df_to_desMat(
     break_durations=None,
     break_policy="single",
     hrf_model="spm + derivative",
+    exclude_modulation=False,  # only for trial_type models, to reduce print statements
     **kwargs,
 ):
     assert model in [
@@ -275,11 +280,14 @@ def convert_df_to_desMat(
             assert model == "trialType"
 
     # make des_mat
+    cols = ["trial_type", "onset", "duration"]
+    if not exclude_modulation:
+        cols.append("modulation")
     sub_run_des_mat = make_first_level_design_matrix(
         sub_trs,
         sub_run_df.loc[
             sub_run_df.trial_type.notnull(),
-            ["trial_type", "onset", "duration", "modulation"],
+            cols,
         ].reset_index(drop=True),
         hrf_model=hrf_model,
         **kwargs,

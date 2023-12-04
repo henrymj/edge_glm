@@ -10,7 +10,7 @@ dependencies:
   - scipy
   - scikit-learn
   - nibabel
-  - nilearn
+  - nilearn==0.9
   - matplotlib
   - seaborn
   - pip

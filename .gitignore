@@ -24,3 +24,4 @@ presentation
 *.ai
 *.svg
 *.psd
+*/.DS_Store
